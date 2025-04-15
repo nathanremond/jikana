@@ -28,6 +28,9 @@ app.use(
   })
 );
 
+// Initialisation de la clé pour se connecter à un compte
+const SECRET_KEY = process.env.SECRET_KEY;
+
 // Route pour swagger UI
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 

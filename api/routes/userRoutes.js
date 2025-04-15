@@ -86,9 +86,8 @@ router.post("/login", async (req, res) => {
  */
 router.post("/register", async (req, res) => {
   try {
-    const { firstname, lastname, email, password } = req.body;
+    const { firstname, lastname, email, password, id_role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
-    const id_role = 2;
     const user = await UserModel.create(
       firstname,
       lastname,
