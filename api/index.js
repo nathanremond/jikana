@@ -41,6 +41,9 @@ app.use("/", userRoutes);
 const movieRoutes = require("./routes/movieRoutes");
 app.use("/", movieRoutes);
 
+const orderRoutes = require("./routes/orderRoutes");
+app.use("/", orderRoutes);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
