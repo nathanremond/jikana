@@ -9,7 +9,7 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "FlowUp",
+      title: "Jikana",
       version: "1.0.0",
       description: "",
     },
@@ -30,6 +30,10 @@ app.use(
 
 // Route pour swagger UI
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+// Endpoints
+const userRoutes = require("./routes/userRoutes");
+app.use("/", userRoutes);
 
 const PORT = process.env.PORT || 3000;
 
