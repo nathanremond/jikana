@@ -38,6 +38,9 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 const userRoutes = require("./routes/userRoutes");
 app.use("/", userRoutes);
 
+const movieRoutes = require("./routes/movieRoutes");
+app.use("/", movieRoutes);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
