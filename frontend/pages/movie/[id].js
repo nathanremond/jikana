@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 export default function MovieDetail() {
+  const { id_role, isLoading, token } = useContext(AuthContext);
   const router = useRouter();
   const { id } = router.query;
   const [movieByID, setMovieByID] = useState(null);
@@ -33,7 +35,38 @@ export default function MovieDetail() {
     }
   }, [id]);
 
+  const handleUpdateMovie = () => {
+    router.push(`/updateMovie/${movieByID.id_movie}`);
+  };
+
+  const handleDeleteMovie = async () => {
+    const confirmDelete = confirm("Es-tu sûr de vouloir supprimer ce film ?");
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/movie/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      if (response.ok) {
+        router.push("/");
+      } else {
+        const error = await response.json();
+        console.error("Erreur suppression :", error);
+      }
+    } catch (error) {
+      console.error("Erreur réseau :", error);
+    }
+  };
+
   if (!movieByID) return <p>Chargement...</p>;
+  if (isLoading) return <p>Chargement...</p>;
 
   return (
     <div className="container">
@@ -45,6 +78,16 @@ export default function MovieDetail() {
           muted
         ></video>
       </div>
+      {!isLoading && id_role === 1 && (
+        <div className="btn-admin-update-movie">
+          <button onClick={handleUpdateMovie}>Modifier</button>
+        </div>
+      )}
+      {!isLoading && id_role === 1 && (
+        <div className="btn-admin-delete-movie">
+          <button onClick={handleDeleteMovie}>Supprimer</button>
+        </div>
+      )}
       <div className="detail-movie">
         <h2>{movieByID.name}</h2>
         <p>
@@ -90,27 +133,29 @@ export default function MovieDetail() {
           {/* Horaires pour la date sélectionnée */}
           {movieByID.schedule_hour
             ?.filter((schedule) => {
-                const scheduleDate = new Date(schedule.schedule_hour);
-                const selected = new Date(selectedDate);
-                return (
+              const scheduleDate = new Date(schedule.schedule_hour);
+              const selected = new Date(selectedDate);
+              return (
                 scheduleDate.getFullYear() === selected.getFullYear() &&
                 scheduleDate.getMonth() === selected.getMonth() &&
                 scheduleDate.getDate() === selected.getDate()
-                );
+              );
             })
             .map((schedule, index) => (
-                <div key={index} className="time-slot">
+              <div key={index} className="time-slot">
                 <p>
-                    Heure :{" "}
-                    {new Date(schedule.schedule_hour).toLocaleTimeString("fr-FR", {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                    })}
+                  Heure :{" "}
+                  {new Date(schedule.schedule_hour).toLocaleTimeString(
+                    "fr-FR",
+                    {
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    }
+                  )}
                 </p>
                 <button className="reserve-button">Réserver</button>
-                </div>
+              </div>
             ))}
-
         </div>
       </div>
     </div>
