@@ -742,6 +742,85 @@ main h1 {
   gap: 10px; 
   margin-top: 20px;
 }
+
+.update-movie-form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.update-movie-form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.update-movie-form input[type="text"],
+.update-movie-form input[type="date"],
+.update-movie-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.update-movie-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.update-movie-form input:focus,
+.update-movie-form textarea:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.checkbox-categories-update {
+  margin-bottom: 20px;
+}
+
+.checkbox-categories-update label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.checkbox-categories-update input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.update-movie-form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.update-movie-form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.update-movie-form button:active {
+  background-color: #004085;
+  transform: scale(0.95);
+}
+
   
   
   
