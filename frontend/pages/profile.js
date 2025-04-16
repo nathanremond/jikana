@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
 import AuthContext from "../context/AuthContext";
+import formatDate from "../utils/functions";
 
 export default function profile() {
   const { token, id_user, email, isLoading, logout } = useContext(AuthContext);
@@ -43,11 +44,8 @@ export default function profile() {
         {orderByUser && orderByUser.length > 0 ? (
           orderByUser.map((orders) => (
             <div key={orders.id_order}>
-              <h2>{orders.name}</h2>
-              <p>{orders.language}</p>
-              <p>{orders.schedule}</p>
-              <p>{orders.quantity}</p>
-              <p>{orders.tatal_amount}</p>
+              <p>{formatDate(orders.order_date)}</p>
+              <p>{orders.total_amount} €</p>
             </div>
           ))
         ) : (
