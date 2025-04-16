@@ -47,6 +47,9 @@ app.use("/", orderRoutes);
 const scheduleRoutes = require("./routes/scheduleRoutes");
 app.use("/", scheduleRoutes);
 
+const categoryRoutes = require("./routes/categoryRoutes");
+app.use("/", categoryRoutes);
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
