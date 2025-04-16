@@ -7,17 +7,16 @@ export default function MovieDetail() {
   const router = useRouter();
   const { id } = router.query;
   const [movieByID, setMovieByID] = useState(null);
-  const [selectedDate, setSelectedDate] = useState(null); // Date sélectionnée
-  const [nextFiveDates, setNextFiveDates] = useState([]); // Les 5 prochaines dates
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [nextSevenDates, setNextSevenDates] = useState([]);
 
-  // Fonction pour générer les 5 prochaines dates
-  const generateNextFiveDates = () => {
+  const generateNextSevenDates = () => {
     const dates = [];
     const today = new Date();
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 7; i++) {
       const nextDate = new Date(today);
       nextDate.setDate(today.getDate() + i);
-      dates.push(nextDate.toISOString().split("T")[0]); // Format YYYY-MM-DD
+      dates.push(nextDate.toISOString().split("T")[0]);
     }
     return dates;
   };
@@ -28,8 +27,9 @@ export default function MovieDetail() {
         .then((res) => res.json())
         .then((data) => {
           setMovieByID(data);
-          setNextFiveDates(generateNextFiveDates()); // Initialise les 5 prochaines dates
-          setSelectedDate(generateNextFiveDates()[0]); // Sélectionne la première date par défaut
+          const nextDates = generateNextSevenDates();
+          setNextSevenDates(nextDates);
+          setSelectedDate(nextDates[0]);
         })
         .catch((err) => console.error("Erreur :", err));
     }
@@ -114,8 +114,7 @@ export default function MovieDetail() {
       <div className="detail-movie-schedule">
         <h2>Horaires</h2>
         <div className="schedule-dates">
-          {/* Boutons pour les 5 prochaines dates */}
-          {nextFiveDates.map((date, index) => (
+          {nextSevenDates.map((date, index) => (
             <button
               key={index}
               className={`date-button ${selectedDate === date ? "active" : ""}`}
@@ -130,8 +129,7 @@ export default function MovieDetail() {
           ))}
         </div>
         <div className="schedule-times">
-          {/* Horaires pour la date sélectionnée */}
-          {movieByID.schedule_hour
+          {movieByID.schedules
             ?.filter((schedule) => {
               const scheduleDate = new Date(schedule.schedule_hour);
               const selected = new Date(selectedDate);
@@ -152,10 +150,21 @@ export default function MovieDetail() {
                       minute: "2-digit",
                     }
                   )}
+                  | {schedule.language} | {schedule.price} €
                 </p>
                 <button className="reserve-button">Réserver</button>
               </div>
             ))}
+          {movieByID.schedules &&
+            movieByID.schedules.filter((schedule) => {
+              const scheduleDate = new Date(schedule.schedule_hour);
+              const selected = new Date(selectedDate);
+              return (
+                scheduleDate.getFullYear() === selected.getFullYear() &&
+                scheduleDate.getMonth() === selected.getMonth() &&
+                scheduleDate.getDate() === selected.getDate()
+              );
+            }).length === 0 && <p>Aucune séance prévue pour ce jour.</p>}
         </div>
       </div>
     </div>
