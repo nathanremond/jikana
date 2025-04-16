@@ -93,14 +93,14 @@ export default function Home() {
   }, [isLoading]);
 
   return (
-    <div className="container">
+    <div className="container-add-movie">
       <form onSubmit={handleAddMovie}>
         <h1>Ajouter un film</h1>
         <br />
         <br />
         <input
           type="text"
-          placeholder="Name"
+          placeholder="Votre nom de film"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
@@ -110,35 +110,33 @@ export default function Home() {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <label>Image du film</label>
         <input
           type="text"
-          placeholder="Picture"
+          placeholder="image du film"
           value={picture}
           onChange={(e) => setPicture(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Duration"
+          placeholder="Durée"
           value={duration}
           onChange={(e) => setDuration(e.target.value)}
         />
+        <label>Date de sortie</label>
         <input
           type="date"
-          placeholder="Release_date"
           value={release_date}
           onChange={(e) => setReleaseDate(e.target.value)}
         />
+        <label>Date de fin de diffusion</label>
         <input
           type="date"
-          placeholder="End_date"
           value={end_date}
           onChange={(e) => setEndDate(e.target.value)}
         />
-        <label>Bande-annonce</label>
         <input
           type="text"
-          placeholder="video"
+          placeholder="Bande annonce"
           value={video}
           onChange={(e) => setVideo(e.target.value)}
         />
