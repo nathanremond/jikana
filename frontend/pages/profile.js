@@ -3,7 +3,8 @@ import { useRouter } from "next/router";
 import AuthContext from "../context/AuthContext";
 
 export default function profile() {
-  const { token, email, isLoading, logout } = useContext(AuthContext);
+  const { token, id_user, email, isLoading, logout } = useContext(AuthContext);
+  const [orderByUser, setOrderByUser] = useState(null);
   const router = useRouter();
 
   //Redirige vers /login si l'utilisateur n'est pas connecté
@@ -12,6 +13,15 @@ export default function profile() {
       router.push("/login");
     }
   }, [isLoading, token]);
+
+  useEffect(() => {
+    if (id_user) {
+      fetch(process.env.NEXT_PUBLIC_API_BASE_URL + `/user/${id_user}/order`)
+        .then((res) => res.json())
+        .then((data) => setOrderByUser(data))
+        .catch((err) => console.error("Erreur :", err));
+    }
+  }, [id_user]);
 
   //Fonction de déconnexion
   const handleLogout = async (e) => {
@@ -24,11 +34,26 @@ export default function profile() {
   if (!token) return <p>Redirection en cours...</p>;
 
   return (
-    <div className="container">
+    <div className="profile-container">
       <div className="profile-name">
         <h1>Bienvenue sur votre page de profil {email}</h1>
       </div>
-
+      <div className="profile-container-card">
+        <h1>Mes reservations</h1>
+        {orderByUser && orderByUser.length > 0 ? (
+          orderByUser.map((orders) => (
+            <div key={orders.id_order}>
+              <h2>{orders.name}</h2>
+              <p>{orders.language}</p>
+              <p>{orders.schedule}</p>
+              <p>{orders.quantity}</p>
+              <p>{orders.tatal_amount}</p>
+            </div>
+          ))
+        ) : (
+          <p>Aucune réservation trouvée.</p>
+        )}
+      </div>
       <div>
         <button onClick={handleLogout}>Se déconnecter</button>
       </div>
