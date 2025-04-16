@@ -1,4 +1,7 @@
+import { useRouter } from "next/router";
+
 export default function Header() {
+  const router = useRouter();
 
   return (
     <header>
@@ -12,11 +15,8 @@ export default function Header() {
       </div>
       <div>
         {/* Icône de connexion */}
-        <a href="/login" >
-          <img
-            src="icone_de_connexion.png"
-            alt="Icône de connexion"
-          />
+        <a href="/login">
+          <img src="icone_de_connexion.png" alt="Icône de connexion" />
         </a>
       </div>
     </header>
