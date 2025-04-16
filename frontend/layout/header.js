@@ -14,10 +14,6 @@ export default function Header() {
         />
       </div>
       <div>
-        {/* Barre de recherche */}
-        <input type="text" placeholder="Rechercher..." />
-      </div>
-      <div>
         {/* Icône de connexion */}
         <a href="/login">
           <img src="icone_de_connexion.png" alt="Icône de connexion" />
