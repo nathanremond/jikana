@@ -1,23 +1,30 @@
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
+import AuthContext from "../context/AuthContext";
 
 export default function MovieReservation() {
+  const { id_user } = useContext(AuthContext);
   const router = useRouter();
-  const [cart, setCart] = useState([]);
+  const [book, setBook] = useState([]);
 
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
-    setCart(storedCart);
+    const storedBook = JSON.parse(localStorage.getItem("book")) || [];
+    setBook(storedBook);
   }, []);
 
-  const handleRemoveFromCart = (movieId) => {
-    const updatedCart = cart.filter((movie) => movie.id_movie !== movieId);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  const updateQuantity = (index, delta) => {
+    setBook((prevBook) => {
+      const updated = [...prevBook];
+      const newQuantity = updated[index].quantity + delta;
+      if (newQuantity < 1) return prevBook;
+      updated[index].quantity = newQuantity;
+      localStorage.setItem("book", JSON.stringify(updated));
+      return updated;
+    });
   };
 
   const calculTotal = () => {
-    const total = cart.reduce(
+    const total = book.reduce(
       (sum, movie) => sum + Number(movie.price || 0) * movie.quantity,
       0
     );
@@ -28,16 +35,18 @@ export default function MovieReservation() {
     e.preventDefault();
 
     const total_amount = calculTotal();
-    const ordered_movies = cart.map((movie) => ({
-      id_movie: movie.id_movie,
-      schedule_hour: movie.schedule_hour,
-      quantity: movie.quantity,
+    const ordered_schedule = book.map((movie) => ({
+      id_schedule: movie.id_movie,
+      quantity: movie.quantity
     }));
 
     const data = {
       total_amount: total_amount,
-      ordered_movies: ordered_movies,
+      ordered_schedule: ordered_schedule,
+      id_user: id_user
     };
+
+    console.log("DATA ENVOYEE:", data);
 
     try {
       const response = await fetch(
@@ -51,11 +60,12 @@ export default function MovieReservation() {
 
       if (!response.ok) {
         const errorData = await response.json();
+        console.error("Erreur API:", errorData);
         alert(`Erreur : ${errorData.message || "Une erreur est survenue"}`);
         return;
       }
 
-      alert("Votre commande a été passée avec succès !");
+      localStorage.removeItem("book");
       await router.push("/profile");
     } catch (error) {
       alert("Une erreur est survenue lors de la commande.");
@@ -66,19 +76,32 @@ export default function MovieReservation() {
     <div className="container-order">
       <main>
         <h1>Votre Réservation</h1>
-        {cart.length > 0 ? (
-          <div className="cart-container">
+        {book.length > 0 ? (
+          <div className="book-container">
             <ul>
-              {cart.map((movie) => (
+              {book.map((movie, index) => (
                 <li key={movie.id_movie}>
                   <h3>{movie.name}</h3>
-                  <p>Horaire : {new Date(movie.schedule_hour).toLocaleString("fr-FR", { weekday: "long", hour: "2-digit", minute: "2-digit" })}</p>
+                  <p>
+                    Horaire :{" "}
+                    {new Date(movie.schedule_hour).toLocaleString("fr-FR", {
+                      weekday: "long",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })}
+                  </p>
                   <p>Langue : {movie.language}</p>
-                  <p>Quantité : {movie.quantity}</p>
-                  <p>Prix : {(Number(movie.price) || 0).toFixed(2)} €</p>
-                  <button onClick={() => handleRemoveFromCart(movie.id_movie)}>
-                    Supprimer
-                  </button>
+                  <div className="quantity-section">
+                    <p>Quantité :</p>
+                    <button onClick={() => updateQuantity(index, -1)}>-</button>
+                    <span>{movie.quantity}</span>
+                    <button onClick={() => updateQuantity(index, 1)}>+</button>
+                  </div>
+                  <p>Prix unitaire : {Number(movie.price).toFixed(2)} €</p>
+                  <p>
+                    Sous-total :{" "}
+                    {(Number(movie.price) * movie.quantity).toFixed(2)} €
+                  </p>
                 </li>
               ))}
             </ul>
