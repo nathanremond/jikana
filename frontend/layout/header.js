@@ -5,7 +5,7 @@ export default function Header() {
 
   return (
     <header>
-      <div>
+      <div className="header-logo">
         {/* Logo */}
         <img
           src="imageJiKaNa.png"
@@ -13,7 +13,7 @@ export default function Header() {
           onClick={() => router.push("/")}
         />
       </div>
-      <div>
+      <div className="header-login">
         {/* Icône de connexion */}
         <a href="/login">
           <img src="icone_de_connexion.png" alt="Icône de connexion" />

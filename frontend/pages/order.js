@@ -63,7 +63,7 @@ export default function MovieReservation() {
   };
 
   return (
-    <div className="container">
+    <div className="container-order">
       <main>
         <h1>Votre Réservation</h1>
         {cart.length > 0 ? (
@@ -86,7 +86,7 @@ export default function MovieReservation() {
             <button onClick={handleSubmit}>Payer</button>
           </div>
         ) : (
-          <p>Votre panier est vide.</p>
+          <p>Pas de reservations.</p>
         )}
       </main>
     </div>

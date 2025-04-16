@@ -51,8 +51,10 @@ export default function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Se connecter</button>
+        <div className="create-account">
+          <a href="/register">Créer un compte</a>
+        </div>
       </form>
-      <a href="/register">Créer un compte</a>
     </div>
   );
 }

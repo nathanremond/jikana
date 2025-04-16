@@ -31,8 +31,8 @@ export default function Register() {
   };
 
   return (
-    <div className="container">
-      <form onSubmit={handleRegister}>
+    <div className="register-container">
+      <form onSubmit={handleRegister} className="form-register">
         <h1>Créer un compte</h1>
         <a href="/login">Se connecter à un compte</a>
         <input
