@@ -65,6 +65,21 @@ export default function MovieDetail() {
     }
   };
 
+  const handleOrderSchedule = (schedule) => {
+    const booking = {
+      id_movie: movieByID.id_movie,
+      name: movieByID.name,
+      schedule_hour: new Date(schedule.schedule_hour).toISOString(),
+      language: schedule.language,
+      price: schedule.price,
+      quantity: 1,
+    };
+
+    localStorage.setItem("book", JSON.stringify([booking]));
+
+    router.push("/order");
+  };
+
   if (!movieByID) return <p>Chargement...</p>;
   if (isLoading) return <p>Chargement...</p>;
 
@@ -152,7 +167,12 @@ export default function MovieDetail() {
                   )}
                   | {schedule.language} | {schedule.price} €
                 </p>
-                <button className="reserve-button">Réserver</button>
+                <button
+                  className="reserve-button"
+                  onClick={() => handleOrderSchedule(schedule)}
+                >
+                  Réserver
+                </button>
               </div>
             ))}
           {movieByID.schedules &&
