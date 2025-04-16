@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 
 export default function Home() {
   const [movie, setMovie] = useState(null);
+  const [category, setCategory] = useState(null);
   const router = useRouter();
   
   useEffect(() => {
@@ -12,15 +13,41 @@ export default function Home() {
       .catch((err) => console.error("Erreur :", err));
   }, []);
 
+  useEffect(() => {
+    fetch(process.env.NEXT_PUBLIC_API_BASE_URL + `/category`)
+      .then((res) => res.json())
+      .then((data) => setCategory(data))
+      .catch((err) => console.error("Erreur :", err));
+  }, []);
+
   return (
-    <div className="accueil_container">
-      <div>
+    <div className="accueil-container">
+      <div className="search-container">
         {/* Barre de recherche */}
         <input
           type="text"
-          placeholder="Rechercher..."
+          id="search"
+          placeholder="Rechercher un film, un acteur, etc..."
         />
+
+        <div className="categories-dropdown">
+          <select id="categories">
+            <option value="">Toutes les catégories</option>
+            {!category ? (
+              <option disabled>Chargement...</option>
+            ) : category.length === 0 ? (
+              <option disabled>Aucune catégorie.</option>
+            ) : (
+              category.map((category) => (
+                <option key={category.id_category} value={category.id_category}>
+                  {category.name}
+                </option>
+              ))
+            )}
+          </select>
+        </div>
       </div>
+
       <section>
         <h2>Les film</h2>
         <div className="accueil-film-list">
