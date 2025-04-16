@@ -14,6 +14,13 @@ export default function Home() {
 
   return (
     <div className="accueil_container">
+      <div>
+        {/* Barre de recherche */}
+        <input
+          type="text"
+          placeholder="Rechercher..."
+        />
+      </div>
       <section>
         <h2>Les film</h2>
         <div className="accueil-film-list">
