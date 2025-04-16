@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useRouter } from "next/router";
+import AuthContext from "../context/AuthContext";
 
 export default function Home() {
+  const { id_role, isLoading } = useContext(AuthContext);
   const [movies, setMovies] = useState(null);
   const [keywords, setKeywords] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -45,6 +47,12 @@ export default function Home() {
     }
   };
 
+  const handleAddMovie = () => {
+    router.push("/addMovie");
+  }
+
+  if (isLoading) return <p>Chargement...</p>;
+
   return (
     <div className="accueil-container">
       {/* Barre de recherche */}
@@ -80,6 +88,12 @@ export default function Home() {
 
         <button onClick={searchMovies}>Rechercher</button>
       </div>
+
+      {!isLoading && id_role === 1 && (
+        <div className="btn-admin-add-movie">
+          <button onClick={handleAddMovie}>Ajouter un film</button>
+        </div>
+      )}
 
       <section>
         <h2>Les film</h2>

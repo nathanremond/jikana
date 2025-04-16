@@ -15,17 +15,17 @@ export const AuthProvider = ({ children }) => {
     const storedEmail = localStorage.getItem("email");
     const storedId_role = localStorage.getItem("id_role");
     if (storedToken) setToken(storedToken);
-    if (storedId_user) setId_user(storedId_user);
+    if (storedId_user) setId_user(Number(storedId_user));
     if (storedEmail) setEmail(storedEmail);
-    if (storedId_role) setId_role(storedId_role);
+    if (storedId_role) setId_role(Number(storedId_role));
     setIsLoading(false);
   }, []);
 
   const login = (newToken, Id_user, userEmail, Id_role) => {
     setToken(newToken);
-    setId_user(Id_user);
+    setId_user(Number(Id_user));
     setEmail(userEmail);
-    setId_role(Id_role);
+    setId_role(Number(Id_role));
     localStorage.setItem("token", newToken);
     localStorage.setItem("id_user", Id_user);
     localStorage.setItem("email", userEmail);
