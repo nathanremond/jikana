@@ -579,6 +579,169 @@ main h1 {
     font-size: 16px;
     color: #777;
   }
+
+.btn-admin-add-movie {
+  display: flex;
+  justify-content: flex-end; 
+  margin: 20px 0; 
+}
+
+.btn-admin-add-movie button {
+  padding: 10px 20px;
+  background-color: red; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin-add-movie button:hover {
+  background-color: orangered;
+  transform: scale(1.05); 
+}
+
+.btn-admin-add-movie button:active {
+  background-color: red; 
+  transform: scale(0.95); 
+}  
+
+.container-add-movie {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.container-add-movie form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 600px;
+}
+
+.container-add-movie form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.container-add-movie form input[type="text"],
+.container-add-movie form input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.container-add-movie form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.checkbox-group {
+  margin-bottom: 20px;
+}
+
+.checkbox-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.container-add-movie form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.container-add-movie form button:hover {
+  background-color: darkblue;
+  transform: scale(1.05);
+}
+
+.container-add-movie form button:active {
+  background-color: #007bff;
+  transform: scale(0.95);
+}
+
+.btn-admin-update-movie button {
+  padding: 10px 20px;
+  background-color: #28a745; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin-update-movie button:hover {
+  background-color: #218838; 
+  transform: scale(1.05); 
+}
+
+.btn-admin-update-movie button:active {
+  background-color: #1e7e34;
+  transform: scale(0.95);
+}
+
+/* Bouton Supprimer */
+.btn-admin-delete-movie button {
+  padding: 10px 20px;
+  background-color: #dc3545; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin-delete-movie button:hover {
+  background-color: #c82333; 
+  transform: scale(1.05); 
+}
+
+.btn-admin-delete-movie button:active {
+  background-color: #bd2130;
+  transform: scale(0.95); 
+}
+
+.btn-admin-update-movie,
+.btn-admin-delete-movie {
+  display: inline-block;
+  margin-right: 10px; 
+}
+
+
+.container-admin-buttons {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px; 
+  margin-top: 20px;
+}
   
   
   
