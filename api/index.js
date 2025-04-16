@@ -28,12 +28,27 @@ app.use(
   })
 );
 
+// Initialisation de la clé pour se connecter à un compte
+const SECRET_KEY = process.env.SECRET_KEY;
+
 // Route pour swagger UI
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 // Endpoints
 const userRoutes = require("./routes/userRoutes");
 app.use("/", userRoutes);
+
+const movieRoutes = require("./routes/movieRoutes");
+app.use("/", movieRoutes);
+
+const orderRoutes = require("./routes/orderRoutes");
+app.use("/", orderRoutes);
+
+const scheduleRoutes = require("./routes/scheduleRoutes");
+app.use("/", scheduleRoutes);
+
+const categoryRoutes = require("./routes/categoryRoutes");
+app.use("/", categoryRoutes);
 
 const PORT = process.env.PORT || 3000;
 
