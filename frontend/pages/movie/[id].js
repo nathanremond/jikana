@@ -72,7 +72,7 @@ export default function MovieDetail() {
     <div className="container">
       <div className="detail-video-film">
         <video
-          src={`/movies/${movieByID.video}`}
+          src={`/videosMovies/${movieByID.video}`}
           controls
           autoPlay
           muted
