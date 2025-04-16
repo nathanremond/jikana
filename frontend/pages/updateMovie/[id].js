@@ -97,52 +97,62 @@ export default function UpdateMovie() {
   if (!movie) return <p>Chargement...</p>;
 
   return (
-    <form onSubmit={handleUpdate}>
+    <form onSubmit={handleUpdate} className="update-movie-form">
       <h1>Modifier le film</h1>
+      <label>Titre</label>
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
+      <label>Description</label>
       <textarea
         value={description}
         onChange={(e) => setDescription(e.target.value)}
       />
+      <label>Durée</label>
       <input
         type="text"
         value={duration}
         onChange={(e) => setDuration(e.target.value)}
       />
+      <label>Image</label>
       <input
         type="text"
         value={picture}
         onChange={(e) => setPicture(e.target.value)}
       />
+      <label>Date de sortie</label>
       <input
         type="date"
         value={release_date}
         onChange={(e) => setReleaseDate(e.target.value)}
       />
+      <label>Date de fin de diffusion</label>
       <input
         type="date"
         value={end_date}
         onChange={(e) => setEndDate(e.target.value)}
       />
+      <label>Vidéo</label>
       <input
         type="text"
         value={video}
         onChange={(e) => setVideo(e.target.value)}
       />
+      <label>Réalisateurs</label>
       <input
         type="text"
         value={directors}
         onChange={(e) => setDirectors(e.target.value)}
       />
+      <label>Acteurs</label>
       <input
         type="text"
         value={actors}
         onChange={(e) => setActors(e.target.value)}
       />
+      <label>Langues</label>
       <input
         type="text"
         value={languages}
