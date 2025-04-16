@@ -25,7 +25,7 @@ export default function Home() {
             movie.map((movie) => (
               <div className="accueil-movies-card" key={movie.id_movie}>
                 <a href={`/movie/${movie.id_movie}`}>
-                  <img src={`/films/img${movie.name}.png`} alt={movie.name} />
+                  <img src={`/movies/${movie.name}.png`} alt={movie.name} />
                   <h3>{movie.name}</h3>
                 </a>
               </div>
