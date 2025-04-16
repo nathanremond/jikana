@@ -28,9 +28,9 @@ class MovieModel {
 		    )
 		  ) AS categories
        FROM movie m
-       INNER JOIN schedule s ON m.id_movie = s.id_movie
-       INNER JOIN movie_category mv ON m.id_movie = mv.id_movie
-       INNER JOIN category c ON mv.id_category = c.id_category
+       LEFT JOIN schedule s ON m.id_movie = s.id_movie
+       LEFT JOIN movie_category mv ON m.id_movie = mv.id_movie
+       LEFT JOIN category c ON mv.id_category = c.id_category
        WHERE m.id_movie = $1
        GROUP BY m.id_movie;`,
       [id]
