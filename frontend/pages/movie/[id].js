@@ -84,6 +84,11 @@ export default function MovieDetail() {
     router.push(`/addSchedule/${movieByID.id_movie}`);
   };
 
+  const handleUpdateSchedule = () => {
+    
+    router.push(`/updateSchedule/${movieByID.id_movie}`);
+  };
+
   if (!movieByID) return <p>Chargement...</p>;
   if (isLoading) return <p>Chargement...</p>;
 
@@ -176,6 +181,13 @@ export default function MovieDetail() {
                   )}
                   | {schedule.language} | {schedule.price} €
                 </p>
+                {!isLoading && id_role === 1 && (
+                  <div className="btn-admin-delete-movie">
+                    <button onClick={handleUpdateSchedule}>
+                      Modifier un horaire
+                    </button>
+                  </div>
+                )}
                 <button
                   className="reserve-button"
                   onClick={() => handleOrderSchedule(schedule)}
