@@ -11,6 +11,14 @@ const pool = new Pool({
 });
 
 class ScheduleModel {
+  static async getById(id) {
+    const result = await pool.query(
+      "SELECT * FROM schedule WHERE id_schedule = $1",
+      [id]
+    );
+    return result.rows[0];
+  }
+
   static async create({ schedule_hour, language, price, id_movie }) {
     const result = await pool.query(
       "INSERT INTO schedule (schedule_hour, language, price, id_movie) VALUES ($1, $2, $3, $4) RETURNING *",
