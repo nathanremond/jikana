@@ -8,7 +8,7 @@ export default function Header() {
       <div className="header-logo">
         {/* Logo */}
         <img
-          src="/image_logo.png"
+          src="/image_JKN.png"
           alt="Logo"
           onClick={() => router.push("/")}
         />
