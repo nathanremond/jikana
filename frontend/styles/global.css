@@ -86,9 +86,9 @@ section h2 {
  
   .accueil-film-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Garde une taille fixe pour les cartes */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 20px;
-    justify-content: center; /* Centre les cartes si une seule est affichée */
+    justify-content: center; 
   }
   
   .accueil-movies-card {
@@ -98,8 +98,8 @@ section h2 {
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 100%; /* S'adapte à la grille */
-    max-width: 300px; /* Taille maximale pour éviter qu'elle prenne toute la largeur */
+    width: 100%; 
+    max-width: 300px; 
     margin: 0 auto;
   }
   
@@ -201,6 +201,47 @@ section h2 {
     color: #333;
   }
   
+.btn-admin-update-schedule button {
+  padding: 10px 20px;
+  background-color: #28a745; 
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin-update-schedule button:hover {
+  background-color: #218838;
+  transform: scale(1.05); 
+}
+
+.btn-admin-update-schedule button:active {
+  background-color: #1e7e34; 
+  transform: scale(0.95); 
+}
+
+.btn-admin-add-schedule button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-admin-add-schedule button:hover {
+  background-color: #0056b3; 
+  transform: scale(1.05); 
+}
+
+.btn-admin-add-schedule button:active {
+  background-color: #004085;
+  transform: scale(0.95); 
+}
   
 .schedule-dates {
     display: flex;
@@ -592,7 +633,7 @@ main h1 {
 
 .btn-admin-add-movie button {
   padding: 10px 20px;
-  background-color: red; 
+  background-color: #007bff; 
   color: white;
   border: none;
   border-radius: 4px;
@@ -602,12 +643,12 @@ main h1 {
 }
 
 .btn-admin-add-movie button:hover {
-  background-color: orangered;
+  background-color: #0056b3;
   transform: scale(1.05); 
 }
 
 .btn-admin-add-movie button:active {
-  background-color: red; 
+  background-color: #007bff; 
   transform: scale(0.95); 
 }  
 
@@ -824,6 +865,135 @@ main h1 {
   background-color: #004085;
   transform: scale(0.95);
 }
+
+.container-add-schedule {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.container-add-schedule form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.container-add-schedule form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.container-add-schedule form input[type="text"],
+.container-add-schedule form input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.container-add-schedule form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.container-add-schedule form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.container-add-schedule form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.container-add-schedule form button:active {
+  background-color: #004085;
+  transform: scale(0.95);
+}
+
+.container-update-schedule {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.container-update-schedule form {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.container-update-schedule form h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.container-update-schedule form input[type="text"],
+.container-update-schedule form input[type="datetime-local"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.container-update-schedule form input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+.container-update-schedule form button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.container-update-schedule form button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.container-update-schedule form button:active {
+  background-color: #004085;
+  transform: scale(0.95);
+}
+
 
   
   

@@ -88,27 +88,29 @@ export default function UpdateMovie() {
   if (!movie) return <p>Chargement...</p>;
 
   return (
-    <form onSubmit={handleUpdate}>
-      <h1>Modifier l'horaire</h1>
-      <br />
-      <br />
-      <label>Date et heure de la séance</label>
-      <input
-        type="datetime-local"
-        value={schedule_hour}
-        onChange={(e) => setScheduleHour(e.target.value)}
-      />
-      <input
-        type="text"
-        value={language}
-        onChange={(e) => setLanguage(e.target.value)}
-      />
-      <input
-        type="text"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
-      <button type="submit">Mettre à jour</button>
-    </form>
+    <div className="container-update-schedule">
+      <form onSubmit={handleUpdate}>
+        <h1>Modifier l'horaire</h1>
+        <br />
+        <br />
+        <label>Date et heure de la séance</label>
+        <input
+          type="datetime-local"
+          value={schedule_hour}
+          onChange={(e) => setScheduleHour(e.target.value)}
+        />
+        <input
+          type="text"
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        />
+        <input
+          type="text"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+        <button type="submit">Mettre à jour</button>
+      </form>
+    </div>
   );
 }
