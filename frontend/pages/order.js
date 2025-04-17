@@ -3,9 +3,15 @@ import { useEffect, useState, useContext } from "react";
 import AuthContext from "../context/AuthContext";
 
 export default function MovieReservation() {
-  const { id_user } = useContext(AuthContext);
+  const { id_user, isLoading, token } = useContext(AuthContext);
   const router = useRouter();
   const [book, setBook] = useState([]);
+
+  useEffect(() => {
+    if (!isLoading && !token) {
+      router.push("/login");
+    }
+  }, [isLoading, token]);
 
   useEffect(() => {
     const storedBook = JSON.parse(localStorage.getItem("book")) || [];
