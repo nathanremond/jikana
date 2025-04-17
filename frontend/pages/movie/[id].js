@@ -117,9 +117,9 @@ export default function MovieDetail() {
         </p>
         <p>Durée: {movieByID.duration} minutes</p>
         <p>Date de sortie: {movieByID.release_date}</p>
-        <p>Langue: {movieByID.languages}</p>
+        <p>Langue: {movieByID.languages.join(", ")}</p>
         <p>Réalisateur: {movieByID.directors}</p>
-        <p>Acteurs: {movieByID.actors}</p>
+        <p>Acteurs: {movieByID.actors.join(", ")}</p>
       </div>
       <div className="detail-movie-description">
         <h2>Description</h2>
