@@ -1,3 +1,5 @@
+Projet réalisé par Nathan Remond, Jilen Sebamalainathan et Kavé Torkghashghaie
+
 ### Lancement du projet
 
 1)
@@ -7,7 +9,7 @@
 
 2)
 
-Pour lancer l'api :
+Pour lancer l'api, exécutez :
 
 - cd api
 - npm i
@@ -15,7 +17,7 @@ Pour lancer l'api :
 
 3)
 
-Pour lancer le site :
+Pour lancer le site, ouvrez un second terminal et exécutez :
 
 - cd frontend
 - npm i
