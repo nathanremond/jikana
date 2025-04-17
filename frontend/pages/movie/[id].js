@@ -137,7 +137,7 @@ export default function MovieDetail() {
 
       <div className="detail-movie-schedule">
         {!isLoading && id_role === 1 && (
-          <div className="btn-admin-delete-movie">
+          <div className="btn-admin-add-schedule">
             <button onClick={handleAddSchedule}>Ajouter un horaire</button>
           </div>
         )}
@@ -182,7 +182,7 @@ export default function MovieDetail() {
                   | {schedule.language} | {schedule.price} €
                 </p>
                 {!isLoading && id_role === 1 && (
-                  <div className="btn-admin-delete-movie">
+                  <div className="btn-admin-update-schedule">
                     <button onClick={handleUpdateSchedule}>
                       Modifier un horaire
                     </button>
