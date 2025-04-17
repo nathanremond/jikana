@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
 import AuthContext from "../../context/AuthContext";
+import { formatDate } from "../../utils/functions";
 
 export default function MovieDetail() {
   const { id_role, isLoading, token } = useContext(AuthContext);
@@ -125,7 +126,7 @@ export default function MovieDetail() {
             ))}
         </p>
         <p>Durée: {movieByID.duration} minutes</p>
-        <p>Date de sortie: {movieByID.release_date}</p>
+        <p>Date de sortie: {formatDate(movieByID.release_date)}</p>
         <p>Langue: {movieByID.languages.join(", ")}</p>
         <p>Réalisateur: {movieByID.directors}</p>
         <p>Acteurs: {movieByID.actors.join(", ")}</p>
