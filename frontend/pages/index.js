@@ -96,7 +96,7 @@ export default function Home() {
       )}
 
       <section>
-        <h2>Les film</h2>
+        <h2>Les films</h2>
         <div className="accueil-film-list">
           {!movies ? (
             <p>Chargement...</p>
